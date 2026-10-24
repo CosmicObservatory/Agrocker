@@ -1,0 +1,5 @@
+# Ignorar la base de datos persistida localmente
+data/
+*.sqlite
+*.db
+__pycache__/
