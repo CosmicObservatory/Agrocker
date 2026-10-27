@@ -3,3 +3,13 @@ data/
 *.sqlite
 *.db
 __pycache__/
+
+# Datos geoespaciales locales (descargables de INEGI, no van en el repo)
+Q/maps/
+
+# Archivos de metadatos de KDE
+.directory
+
+# Locks de QGIS/ArcGIS
+*.sr.lock
+*.rd.lock
