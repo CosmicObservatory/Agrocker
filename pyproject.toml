@@ -1,0 +1,15 @@
+[project]
+name = "agrocker"
+version = "0.1.0"
+description = "Plataforma de aptitud agricola: clima, produccion DGSIAP y precios de mercado"
+requires-python = ">=3.13"
+dependencies = []
+
+[tool.uv.workspace]
+members = ["packages/*"]
+
+[dependency-groups]
+dev = ["pytest>=8.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["packages/pipeline/tests"]

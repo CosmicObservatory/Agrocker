@@ -1,0 +1,37 @@
+name: agrocker
+
+services:
+  pipeline:
+    build:
+      context: .
+      dockerfile: packages/pipeline/Dockerfile
+    # Corre como el usuario del host para poder escribir en ./data
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      DB_DIR: /app/data
+    volumes:
+      - ./data:/app/data
+    # One-shot por defecto; para modo programado usar:
+    #   docker compose run --rm -e PIPELINE_INTERVAL_HOURS=24 pipeline agro-pipeline weather --loop
+    restart: "no"
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: packages/dashboard/Dockerfile
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      DB_DIR: /app/data
+    ports:
+      - "8050:8050"
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - pipeline
+    restart: unless-stopped

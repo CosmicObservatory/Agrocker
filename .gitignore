@@ -1,15 +1,22 @@
-# Ignorar la base de datos persistida localmente
-data/
-*.sqlite
-*.db
+# Python
 __pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
 
-# Datos geoespaciales locales (descargables de INEGI, no van en el repo)
+# Datos locales (las bases SQLite viven en data/ y en el volumen Docker)
+data/
+*.db
+*.sqlite
+*.sqlite3
+
+# Secretos
+.env
+
+# Datos geoespaciales locales
 Q/maps/
 
-# Archivos de metadatos de KDE
+# Metadatos de escritorio
 .directory
-
-# Locks de QGIS/ArcGIS
 *.sr.lock
 *.rd.lock
